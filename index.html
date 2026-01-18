@@ -17,7 +17,7 @@
 
         nav {
             padding: 20px;
-            background-color: #1c1c1c; /* Slightly lighter matte nav */
+            background-color: #1c1c1c; /* Matte nav */
         }
 
         nav button {
@@ -46,7 +46,7 @@
         }
 
         h1 {
-            font-size: 1.8em; /* Smaller than before */
+            font-size: 1.8em; /* Smaller text */
         }
 
         footer {
@@ -69,13 +69,17 @@
     <nav>
         <button onclick="showPage('home')">Home</button>
         <button onclick="showPage('about')">About</button>
+        <button onclick="window.open('https://fnaf-2.io', '_blank')">FNAF 2</button>
+        <button onclick="window.open('https://www.geo-fs.com', '_blank')">Geo-FS</button>
     </nav>
 
     <main>
+        <!-- Home Page -->
         <div id="home" class="page active">
             <h1>Thank you for using our website</h1>
         </div>
 
+        <!-- About Page -->
         <div id="about" class="page">
             <h1>Made with a lot of creativity and hard work :D</h1>
             <br>
