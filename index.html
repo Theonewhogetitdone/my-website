@@ -1,145 +1,194 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Thank You</title>
-    <style>
-        body {
-            margin: 0;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            font-family: Arial, Helvetica, sans-serif;
-            background-color: #121212;
-            color: white;
-            text-align: center;
-        }
+<meta charset="UTF-8">
+<title>Thank You</title>
 
-        nav {
-            padding: 20px;
-            background-color: #1c1c1c;
-            display: flex;
-            justify-content: center;
-            gap: 15px;
-        }
+<style>
+body {
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: #121212;
+    color: white;
+    text-align: center;
+}
 
-        nav button {
-            padding: 14px 22px;
-            background-color: #333;
-            color: white;
-            border: none;
-            border-radius: 6px;
-            font-weight: bold;
-            cursor: pointer;
-            font-size: 1em;
-        }
+nav {
+    padding: 20px;
+    background-color: #1c1c1c;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
 
-        nav button:hover {
-            background-color: #555;
-        }
+nav button {
+    padding: 14px 22px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+}
 
-        main {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            padding: 20px;
-        }
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
-        .games-title {
-            font-size: 1.6em;
-            margin-bottom: 25px;
-        }
+.games-title {
+    font-size: 1.6em;
+    margin-bottom: 25px;
+}
 
-        .games-container {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 20px;
-        }
+.games-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+}
 
-        /* BIG WHITE GAME BUTTONS */
-        .games-container button {
-            padding: 22px 36px;
-            font-size: 1.3em;
-            background-color: white;
-            color: black;
-            border: 2px solid #000;
-            border-radius: 10px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            box-shadow: 0 6px 12px rgba(0,0,0,0.6);
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
+.games-container button {
+    padding: 22px 36px;
+    font-size: 1.3em;
+    background-color: white;
+    color: black;
+    border: 2px solid #000;
+    border-radius: 10px;
+    cursor: pointer;
+}
 
-        .games-container button:hover {
-            transform: scale(1.08);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.8);
-        }
+footer {
+    padding: 15px 10px;
+    background-color: #1c1c1c;
+    font-size: 0.9em;
+}
 
-        footer {
-            padding: 15px 10px;
-            background-color: #1c1c1c;
-            font-size: 0.9em;
-            line-height: 1.5;
-        }
+/* CHATBOT STYLES */
+#chatbot {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 280px;
+    background: #1c1c1c;
+    border-radius: 10px;
+    box-shadow: 0 0 15px black;
+    overflow: hidden;
+}
 
-        .page {
-            display: none;
-        }
+#chat-header {
+    background: #333;
+    padding: 10px;
+    font-weight: bold;
+}
 
-        .active {
-            display: block;
-        }
-    </style>
+#chat-messages {
+    height: 200px;
+    overflow-y: auto;
+    padding: 10px;
+    font-size: 0.9em;
+}
+
+#chat-input {
+    display: flex;
+}
+
+#chat-input input {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    outline: none;
+}
+
+#chat-input button {
+    padding: 8px 12px;
+    border: none;
+    cursor: pointer;
+    background: white;
+    color: black;
+}
+</style>
 </head>
+
 <body>
 
-    <nav>
-        <button onclick="showPage('home')">🏠 Home</button>
-        <button onclick="showPage('about')">ℹ️ About</button>
-    </nav>
+<nav>
+    <button>🏠 Home</button>
+    <button>ℹ️ About</button>
+</nav>
 
-    <main>
-        <!-- Home Page -->
-        <div id="home" class="page active">
-            <div class="games-title">Games for you guys to play for free</div>
-
-            <div class="games-container">
-                <button onclick="window.open('https://fnaf1.io/', '_blank')">🎮 FNAF 1</button>
-                <button onclick="window.open('https://fnaf-2.io', '_blank')">🐻 FNAF 2</button>
-                <button onclick="window.open('https://fnafgames.io/five-nights-at-freddys-3#google_vignette', '_blank')">👻 FNAF 3</button>
-                <button onclick="window.open('https://fnafgame.io/fnaf-4#google_vignette', '_blank')">😱 FNAF 4</button>
-                <button onclick="window.open('https://www.geo-fs.com', '_blank')">✈️ Geo-FS</button>
-            </div>
+<main>
+    <div>
+        <div class="games-title">Games for you guys to play for free</div>
+        <div class="games-container">
+            <button onclick="openLink('https://fnaf1.io/')">🎮 FNAF 1</button>
+            <button onclick="openLink('https://fnaf-2.io')">🐻 FNAF 2</button>
+            <button onclick="openLink('https://fnafgames.io/five-nights-at-freddys-3#google_vignette')">👻 FNAF 3</button>
+            <button onclick="openLink('https://fnafgame.io/fnaf-4#google_vignette')">😱 FNAF 4</button>
+            <button onclick="openLink('https://www.geo-fs.com')">✈️ Geo-FS</button>
         </div>
+    </div>
+</main>
 
-        <!-- About Page -->
-        <div id="about" class="page">
-            <h1>Made with a lot of creativity and hard work :D</h1>
-            <br>
-            <button onclick="showPage('home')">⬅ Back</button>
-        </div>
-    </main>
+<footer>
+    <div>Thank you for using our website</div>
+    <div>Made by Gabriel Plaxine, Noah Ficentise, and Nicholas Castillo.</div>
+</footer>
 
-    <footer>
-        <div>Thank you for using our website</div>
-        <div>
-            Made by Gabriel Plaxine, Noah Ficentise, and Nicholas Castillo.
-        </div>
-    </footer>
+<!-- CHATBOT -->
+<div id="chatbot">
+    <div id="chat-header">💬 Website Bot</div>
+    <div id="chat-messages"></div>
+    <div id="chat-input">
+        <input type="text" id="userInput" placeholder="Type a message...">
+        <button onclick="sendMessage()">Send</button>
+    </div>
+</div>
 
-    <script>
-        function showPage(pageId) {
-            document.querySelectorAll('.page').forEach(page => {
-                page.classList.remove('active');
-            });
-            document.getElementById(pageId).classList.add('active');
-        }
-    </script>
+<script>
+function openLink(url) {
+    window.open(url, "_blank");
+}
+
+function sendMessage() {
+    const input = document.getElementById("userInput");
+    const msg = input.value.trim();
+    if (!msg) return;
+
+    addMessage("You", msg);
+    input.value = "";
+
+    setTimeout(() => {
+        addMessage("Bot", getBotResponse(msg));
+    }, 500);
+}
+
+function addMessage(sender, text) {
+    const chat = document.getElementById("chat-messages");
+    chat.innerHTML += `<div><b>${sender}:</b> ${text}</div>`;
+    chat.scrollTop = chat.scrollHeight;
+}
+
+function getBotResponse(message) {
+    message = message.toLowerCase();
+
+    if (message.includes("hello") || message.includes("hi"))
+        return "Hello! 👋 Enjoy the games!";
+    if (message.includes("fnaf"))
+        return "FNAF games are listed in the middle!";
+    if (message.includes("geo"))
+        return "Geo-FS is a free flight simulator ✈️";
+    if (message.includes("who made"))
+        return "This site was made by Gabriel, Noah, and Nicholas!";
+    
+    return "I'm here to help! Try asking about the games.";
+}
+</script>
 
 </body>
 </html>
