@@ -5,18 +5,34 @@
 <title>Thank You</title>
 
 <style>
+:root {
+    --bg-overlay: rgba(0,0,0,0.7);
+    --nav-bg: rgba(28,28,28,0.9);
+    --panel-bg: rgba(28,28,28,0.95);
+    --text: white;
+    --button-bg: #333;
+    --button-text: white;
+}
+
+body.light {
+    --bg-overlay: rgba(255,255,255,0.6);
+    --nav-bg: rgba(230,230,230,0.95);
+    --panel-bg: rgba(255,255,255,0.95);
+    --text: black;
+    --button-bg: #ddd;
+    --button-text: black;
+}
+
 body {
     margin: 0;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     font-family: Arial, Helvetica, sans-serif;
-    color: white;
+    color: var(--text);
     text-align: center;
-
-    /* FREDDY FAZBEAR BACKGROUND */
     background-image:
-        linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)),
+        linear-gradient(var(--bg-overlay), var(--bg-overlay)),
         url("freddy-fazbear.png");
     background-size: cover;
     background-position: center;
@@ -25,7 +41,7 @@ body {
 
 nav {
     padding: 20px;
-    background-color: rgba(28, 28, 28, 0.9);
+    background-color: var(--nav-bg);
     display: flex;
     justify-content: center;
     gap: 15px;
@@ -33,8 +49,8 @@ nav {
 
 nav button {
     padding: 14px 22px;
-    background-color: #333;
-    color: white;
+    background-color: var(--button-bg);
+    color: var(--button-text);
     border: none;
     border-radius: 6px;
     font-weight: bold;
@@ -70,9 +86,39 @@ main {
     cursor: pointer;
 }
 
+/* TOOLS */
+#tools {
+    display: none;
+    max-width: 450px;
+    margin: auto;
+    background: var(--panel-bg);
+    padding: 20px;
+    border-radius: 10px;
+}
+
+.calc input {
+    width: 90%;
+    padding: 10px;
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}
+
+.calc button {
+    padding: 10px 14px;
+    margin: 4px;
+}
+
+textarea {
+    width: 90%;
+    height: 100px;
+    padding: 10px;
+    resize: none;
+}
+
+/* FOOTER */
 footer {
     padding: 15px 10px;
-    background-color: rgba(28, 28, 28, 0.9);
+    background-color: var(--nav-bg);
     font-size: 0.9em;
 }
 
@@ -82,14 +128,13 @@ footer {
     bottom: 20px;
     right: 20px;
     width: 280px;
-    background: #1c1c1c;
+    background: var(--panel-bg);
     border-radius: 10px;
     box-shadow: 0 0 15px black;
-    overflow: hidden;
 }
 
 #chat-header {
-    background: #333;
+    background: var(--button-bg);
     padding: 10px;
     font-weight: bold;
 }
@@ -98,7 +143,6 @@ footer {
     height: 200px;
     overflow-y: auto;
     padding: 10px;
-    font-size: 0.9em;
 }
 
 #chat-input {
@@ -109,15 +153,12 @@ footer {
     flex: 1;
     padding: 8px;
     border: none;
-    outline: none;
 }
 
 #chat-input button {
     padding: 8px 12px;
     border: none;
     cursor: pointer;
-    background: white;
-    color: black;
 }
 </style>
 </head>
@@ -125,22 +166,57 @@ footer {
 <body>
 
 <nav>
-    <button onclick="scrollToTop()">🏠 Home</button>
+    <button onclick="showHome()">🏠 Home</button>
+    <button onclick="toggleTools()">🧮 Tools</button>
     <button onclick="showAbout()">ℹ️ About</button>
+    <button onclick="toggleMode()">🌙 / ☀️</button>
 </nav>
 
-<main>
+<main id="home">
     <div>
         <div class="games-title">Games for you guys to play for free</div>
         <div class="games-container">
             <button onclick="openLink('https://fnaf1.io/')">🎮 FNAF 1</button>
             <button onclick="openLink('https://fnaf-2.io')">🐻 FNAF 2</button>
-            <button onclick="openLink('https://fnafgames.io/five-nights-at-freddys-3#google_vignette')">👻 FNAF 3</button>
-            <button onclick="openLink('https://fnafgame.io/fnaf-4#google_vignette')">😱 FNAF 4</button>
+            <button onclick="openLink('https://fnafgames.io/five-nights-at-freddys-3')">👻 FNAF 3</button>
+            <button onclick="openLink('https://fnafgame.io/fnaf-4')">😱 FNAF 4</button>
             <button onclick="openLink('https://www.geo-fs.com')">✈️ Geo-FS</button>
         </div>
     </div>
 </main>
+
+<!-- TOOLS -->
+<div id="tools">
+    <h2>🧮 Calculator</h2>
+    <div class="calc">
+        <input id="calcDisplay" disabled><br>
+        <button onclick="add('7')">7</button>
+        <button onclick="add('8')">8</button>
+        <button onclick="add('9')">9</button>
+        <button onclick="add('/')">÷</button><br>
+        <button onclick="add('4')">4</button>
+        <button onclick="add('5')">5</button>
+        <button onclick="add('6')">6</button>
+        <button onclick="add('*')">×</button><br>
+        <button onclick="add('1')">1</button>
+        <button onclick="add('2')">2</button>
+        <button onclick="add('3')">3</button>
+        <button onclick="add('-')">−</button><br>
+        <button onclick="add('0')">0</button>
+        <button onclick="add('.')">.</button>
+        <button onclick="calculate()">=</button>
+        <button onclick="add('+')">+</button><br>
+        <button onclick="clearCalc()">Clear</button>
+    </div>
+
+    <hr>
+
+    <h2>💬 Feedback</h2>
+    <form action="mailto:plaxinegabriel@gmail.com" method="post" enctype="text/plain">
+        <textarea name="Feedback" placeholder="Write your feedback here..."></textarea><br><br>
+        <button type="submit">Send Feedback</button>
+    </form>
+</div>
 
 <footer>
     <div>Thank you for using our website</div>
@@ -153,77 +229,58 @@ footer {
     <div id="chat-header">💬 Website Bot</div>
     <div id="chat-messages"></div>
     <div id="chat-input">
-        <input type="text" id="userInput" placeholder="Type a message...">
+        <input id="userInput" placeholder="Type a message..." onkeydown="if(event.key==='Enter')sendMessage()">
         <button onclick="sendMessage()">Send</button>
     </div>
 </div>
 
 <script>
-function openLink(url) {
-    window.open(url, "_blank");
+const home = document.getElementById("home");
+const tools = document.getElementById("tools");
+const calcDisplay = document.getElementById("calcDisplay");
+const chatMessages = document.getElementById("chat-messages");
+const userInput = document.getElementById("userInput");
+const viewCounter = document.getElementById("view-counter");
+
+function openLink(url){ window.open(url,"_blank"); }
+
+function showHome(){
+    home.style.display = "flex";
+    tools.style.display = "none";
 }
 
-function scrollToTop() {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+function toggleTools(){
+    const open = tools.style.display === "block";
+    tools.style.display = open ? "none" : "block";
+    home.style.display = open ? "flex" : "none";
 }
 
-/* ABOUT BUTTON */
-function showAbout() {
-    alert(
-        "🎮 About This Website\n\n" +
-        "This website lets you play free games like FNAF 1–4 and Geo-FS.\n\n" +
-        "Built using HTML, CSS, and JavaScript.\n\n" +
-        "Made by:\n" +
-        "Gabriel Plaxine\nNoah Ficentise\nNicholas Castillo"
-    );
+function showAbout(){
+    alert("This website lets you play free games like FNAF and Geo-FS.\n\nMade by Gabriel, Noah, and Nicholas.");
 }
 
-/* CHATBOT */
-function sendMessage() {
-    const input = document.getElementById("userInput");
-    const msg = input.value.trim();
-    if (!msg) return;
+function add(v){ calcDisplay.value += v; }
+function calculate(){ try{ calcDisplay.value = eval(calcDisplay.value); }catch{ alert("Invalid expression"); } }
+function clearCalc(){ calcDisplay.value = ""; }
 
-    addMessage("You", msg);
-    input.value = "";
-
-    setTimeout(() => {
-        addMessage("Bot", getBotResponse(msg));
-    }, 500);
+function sendMessage(){
+    if(!userInput.value.trim()) return;
+    chatMessages.innerHTML += `<div><b>You:</b> ${userInput.value}</div>`;
+    setTimeout(()=>{
+        chatMessages.innerHTML += `<div><b>Bot:</b> Ask me about the games, tools, or site!</div>`;
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    },500);
+    userInput.value = "";
 }
 
-function addMessage(sender, text) {
-    const chat = document.getElementById("chat-messages");
-    chat.innerHTML += `<div><b>${sender}:</b> ${text}</div>`;
-    chat.scrollTop = chat.scrollHeight;
+function toggleMode(){
+    document.body.classList.toggle("light");
 }
 
-function getBotResponse(message) {
-    message = message.toLowerCase();
-
-    if (message.includes("hello") || message.includes("hi"))
-        return "Hello! 👋 Enjoy the games!";
-    if (message.includes("fnaf"))
-        return "FNAF games are listed in the middle!";
-    if (message.includes("geo"))
-        return "Geo-FS is a free flight simulator ✈️";
-    if (message.includes("who made"))
-        return "This site was made by Gabriel, Noah, and Nicholas!";
-
-    return "I'm here to help! Try asking about the games.";
-}
-
-/* VIEW COUNTER */
 let views = localStorage.getItem("page_views");
-
-if (views === null) {
-    views = 1;
-} else {
-    views = parseInt(views) + 1;
-}
-
+views = views ? parseInt(views) + 1 : 1;
 localStorage.setItem("page_views", views);
-document.getElementById("view-counter").innerText = "👀 Views: " + views;
+viewCounter.innerText = "👀 Views: " + views;
 </script>
 
 </body>
