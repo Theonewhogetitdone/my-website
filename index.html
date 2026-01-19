@@ -145,6 +145,7 @@ footer {
 <footer>
     <div>Thank you for using our website</div>
     <div>Made by Gabriel Plaxine, Noah Ficentise, and Nicholas Castillo.</div>
+    <div id="view-counter">👀 Views: 0</div>
 </footer>
 
 <!-- CHATBOT -->
@@ -195,6 +196,18 @@ function getBotResponse(message) {
     
     return "I'm here to help! Try asking about the games.";
 }
+
+/* VIEW COUNTER */
+let views = localStorage.getItem("page_views");
+
+if (views === null) {
+    views = 1;
+} else {
+    views = parseInt(views) + 1;
+}
+
+localStorage.setItem("page_views", views);
+document.getElementById("view-counter").innerText = "👀 Views: " + views;
 </script>
 
 </body>
