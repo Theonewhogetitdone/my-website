@@ -17,11 +17,14 @@
 
         nav {
             padding: 20px;
-            background-color: #1c1c1c; /* Matte nav */
+            background-color: #1c1c1c;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
         }
 
         nav button {
-            margin: 0 10px;
             padding: 12px 20px;
             background-color: #333;
             color: white;
@@ -47,7 +50,7 @@
         }
 
         h1 {
-            font-size: 1.8em; /* Smaller text */
+            font-size: 1.8em;
         }
 
         footer {
@@ -70,7 +73,12 @@
     <nav>
         <button onclick="showPage('home')">Home</button>
         <button onclick="showPage('about')">About</button>
+
+        <button onclick="window.open('https://fnaf1.io/', '_blank')">FNAF 1</button>
         <button onclick="window.open('https://fnaf-2.io', '_blank')">FNAF 2</button>
+        <button onclick="window.open('https://fnafgames.io/five-nights-at-freddys-3#google_vignette', '_blank')">FNAF 3</button>
+        <button onclick="window.open('https://fnafgame.io/fnaf-4#google_vignette', '_blank')">FNAF 4</button>
+
         <button onclick="window.open('https://www.geo-fs.com', '_blank')">Geo-FS</button>
     </nav>
 
