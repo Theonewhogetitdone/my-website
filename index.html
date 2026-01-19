@@ -2,156 +2,174 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Thank You</title>
+<title>FNAF Games Hub</title>
 
 <style>
-:root{
-    --bg-overlay: rgba(0,0,0,.7);
-    --nav-bg: rgba(28,28,28,.9);
-    --panel-bg: rgba(28,28,28,.95);
-    --text: white;
-    --btn-bg: #333;
-    --btn-text: white;
+html, body {
+    height: 100%;
 }
 
-.light{
-    --bg-overlay: rgba(255,255,255,.7);
-    --nav-bg: rgba(240,240,240,.95);
-    --panel-bg: rgba(255,255,255,.95);
-    --text: black;
-    --btn-bg: #ddd;
-    --btn-text: black;
-}
-
-body{
-    margin:0;
-    min-height:100vh;
-    display:flex;
-    flex-direction:column;
-    font-family:Arial,Helvetica,sans-serif;
-    color:var(--text);
-    text-align:center;
-    background-image:
-        linear-gradient(var(--bg-overlay),var(--bg-overlay)),
+body {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    text-align: center;
+    background:
+        linear-gradient(rgba(0,0,0,.75), rgba(0,0,0,.75)),
         url("freddy-fazbear.png");
-    background-size:cover;
-    background-position:center;
-    background-attachment:fixed;
+    background-size: cover;
+    background-position: center;
 }
 
-nav{
-    padding:20px;
-    background:var(--nav-bg);
-    display:flex;
-    justify-content:center;
-    gap:15px;
+/* NAV */
+nav {
+    background: #111;
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
 }
 
-nav button{
-    padding:14px 22px;
-    background:var(--btn-bg);
-    color:var(--btn-text);
-    border:none;
-    border-radius:6px;
-    font-weight:bold;
-    cursor:pointer;
+nav button {
+    padding: 12px 20px;
+    background: #333;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform .2s, background .2s;
 }
 
-main{
-    flex:1;
-    display:flex;
-    justify-content:center;
-    align-items:center;
+nav button:hover {
+    transform: scale(1.1);
+    background: #555;
 }
 
-.games-title{font-size:1.6em;margin-bottom:25px}
-
-.games-container{
-    display:flex;
-    flex-wrap:wrap;
-    justify-content:center;
-    gap:20px;
+/* MAIN */
+main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 1s ease;
 }
 
-.games-container button{
-    padding:22px 36px;
-    font-size:1.3em;
-    background:white;
-    color:black;
-    border:2px solid black;
-    border-radius:10px;
-    cursor:pointer;
+.games-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
 }
 
-#tools{
-    display:none;
-    max-width:450px;
-    margin:auto;
-    background:var(--panel-bg);
-    padding:20px;
-    border-radius:10px;
+.games-container button {
+    padding: 20px 30px;
+    font-size: 1.2em;
+    background: white;
+    color: black;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform .2s;
 }
 
-.calc input{
-    width:90%;
-    padding:10px;
-    font-size:1.2em;
-    margin-bottom:10px;
+.games-container button:hover {
+    transform: scale(1.1);
 }
 
-.calc button{padding:10px 14px;margin:4px}
+/* TOOLS */
+#tools {
+    display: none;
+    background: rgba(0,0,0,.85);
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 500px;
+    border-radius: 10px;
+    animation: fadeIn .6s ease;
+}
 
-textarea{width:90%;height:100px;padding:10px}
+/* CALCULATOR */
+.calc input {
+    width: 90%;
+    padding: 10px;
+    font-size: 1.1em;
+}
+.calc button {
+    padding: 8px 12px;
+    margin: 3px;
+    cursor: pointer;
+}
 
-footer{
-    padding:15px;
-    background:var(--nav-bg);
-    font-size:.9em;
+/* TIC TAC TOE */
+#board {
+    display: grid;
+    grid-template-columns: repeat(3, 80px);
+    gap: 5px;
+    justify-content: center;
+    margin-top: 10px;
+}
+.cell {
+    width: 80px;
+    height: 80px;
+    background: #111;
+    border: 2px solid white;
+    font-size: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background .2s;
+}
+.cell:hover {
+    background: #222;
+}
+
+/* FOOTER */
+footer {
+    background: #111;
+    padding: 12px;
 }
 
 /* CHATBOT */
-#chatbot{
-    position:fixed;
-    bottom:20px;
-    right:20px;
-    width:300px;
-    background:var(--panel-bg);
-    border-radius:10px;
-    box-shadow:0 0 15px black;
-    overflow:hidden;
+#chatbot {
+    position: fixed;
+    bottom: 15px;
+    right: 15px;
+    width: 280px;
+    background: #1c1c1c;
+    border-radius: 8px;
 }
 
-#chat-header{
-    background:var(--btn-bg);
-    padding:10px;
-    font-weight:bold;
+#chat-header {
+    background: #333;
+    padding: 8px;
+    font-weight: bold;
 }
 
-#chat-messages{
-    height:220px;
-    overflow-y:auto;
-    padding:10px;
-    font-size:.9em;
-    text-align:left;
+#chat-messages {
+    height: 180px;
+    overflow-y: auto;
+    padding: 8px;
+    font-size: .9em;
 }
 
-#chat-input{
-    display:flex;
+#chat-input {
+    display: flex;
+}
+#chat-input input {
+    flex: 1;
+    padding: 6px;
+}
+#chat-input button {
+    padding: 6px 10px;
+    cursor: pointer;
 }
 
-#chat-input input{
-    flex:1;
-    padding:8px;
-    border:none;
-    outline:none;
-}
-
-#chat-input button{
-    padding:8px 12px;
-    border:none;
-    cursor:pointer;
-    background:white;
-    color:black;
+/* ANIMATION */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; }
 }
 </style>
 </head>
@@ -160,122 +178,165 @@ footer{
 
 <nav>
     <button onclick="showHome()">🏠 Home</button>
-    <button onclick="toggleTools()">🧮 Tools</button>
+    <button onclick="toggleTools()">🧰 Tools</button>
     <button onclick="showAbout()">ℹ️ About</button>
-    <button onclick="toggleTheme()">🌗 Light / Dark</button>
 </nav>
 
 <main id="home">
-    <div>
-        <div class="games-title">Games for you guys to play for free</div>
-        <div class="games-container">
-            <button onclick="openLink('https://fnaf1.io/')">🎮 FNAF 1</button>
-            <button onclick="openLink('https://fnaf-2.io')">🐻 FNAF 2</button>
-            <button onclick="openLink('https://fnafgames.io/five-nights-at-freddys-3')">👻 FNAF 3</button>
-            <button onclick="openLink('https://fnafgame.io/fnaf-4')">😱 FNAF 4</button>
-            <button onclick="openLink('https://www.geo-fs.com')">✈️ Geo-FS</button>
-        </div>
+<div>
+    <h2>Games for you guys to play for free</h2>
+    <div class="games-container">
+        <button onclick="openLink('https://fnaf1.io/')">FNAF 1</button>
+        <button onclick="openLink('https://fnaf-2.io')">FNAF 2</button>
+        <button onclick="openLink('https://fnafgames.io/five-nights-at-freddys-3')">FNAF 3</button>
+        <button onclick="openLink('https://fnafgame.io/fnaf-4')">FNAF 4</button>
+        <button onclick="openLink('https://www.geo-fs.com')">Geo-FS</button>
     </div>
+</div>
 </main>
 
 <div id="tools">
-    <h2>🧮 Calculator</h2>
-    <div class="calc">
-        <input id="calcDisplay" disabled><br>
-        <button onclick="add('7')">7</button>
-        <button onclick="add('8')">8</button>
-        <button onclick="add('9')">9</button>
-        <button onclick="add('/')">÷</button><br>
-        <button onclick="add('4')">4</button>
-        <button onclick="add('5')">5</button>
-        <button onclick="add('6')">6</button>
-        <button onclick="add('*')">×</button><br>
-        <button onclick="add('1')">1</button>
-        <button onclick="add('2')">2</button>
-        <button onclick="add('3')">3</button>
-        <button onclick="add('-')">−</button><br>
-        <button onclick="add('0')">0</button>
-        <button onclick="add('.')">.</button>
-        <button onclick="calculate()">=</button>
-        <button onclick="add('+')">+</button><br>
-        <button onclick="clearCalc()">Clear</button>
-    </div>
+<h3>🧮 Calculator</h3>
+<div class="calc">
+<input id="calcDisplay" disabled><br>
+<button onclick="addCalc('7')">7</button>
+<button onclick="addCalc('8')">8</button>
+<button onclick="addCalc('9')">9</button>
+<button onclick="addCalc('/')">÷</button><br>
+<button onclick="addCalc('4')">4</button>
+<button onclick="addCalc('5')">5</button>
+<button onclick="addCalc('6')">6</button>
+<button onclick="addCalc('*')">×</button><br>
+<button onclick="addCalc('1')">1</button>
+<button onclick="addCalc('2')">2</button>
+<button onclick="addCalc('3')">3</button>
+<button onclick="addCalc('-')">−</button><br>
+<button onclick="addCalc('0')">0</button>
+<button onclick="calculate()">=</button>
+<button onclick="addCalc('+')">+</button>
+<button onclick="clearCalc()">C</button>
+</div>
 
-    <h2>💡 Feedback</h2>
-    <form action="mailto:plaxinegabriel@gmail.com" method="post" enctype="text/plain">
-        <textarea name="message" placeholder="Type feedback here..."></textarea><br><br>
-        <button type="submit">Send</button>
-    </form>
+<h3>❌⭕ Tic Tac Toe</h3>
+<button onclick="setMode('pvp')">Multiplayer</button>
+<button onclick="setMode('ai')">VS AI</button>
+<div id="board"></div>
+<div id="tttStatus"></div>
+
+<h3>📩 Feedback</h3>
+<form action="mailto:plaxinegabriel@gmail.com" method="post" enctype="text/plain">
+<textarea name="feedback" rows="4" style="width:90%"></textarea><br><br>
+<button type="submit">Send Feedback</button>
+</form>
 </div>
 
 <footer>
-    <div>Thank you for using our website</div>
-    <div>Made by Gabriel Plaxine, Noah Ficentise, and Nicholas Castillo.</div>
-    <div id="view-counter"></div>
+    Thank you for using our website — Made by Gabriel, Noah, and Nicholas
 </footer>
 
 <div id="chatbot">
     <div id="chat-header">💬 Website Bot</div>
     <div id="chat-messages"></div>
     <div id="chat-input">
-        <input id="userInput" placeholder="Ask me anything…">
+        <input id="userInput" placeholder="Ask me something…">
         <button onclick="sendMessage()">Send</button>
     </div>
 </div>
 
 <script>
-const home=document.getElementById("home"),
-tools=document.getElementById("tools"),
-chat=document.getElementById("chat-messages"),
-input=document.getElementById("userInput");
+/* NAV */
+function openLink(u){ window.open(u,"_blank"); }
+function showHome(){
+    document.getElementById("home").style.display="flex";
+    document.getElementById("tools").style.display="none";
+}
+function toggleTools(){
+    const tools=document.getElementById("tools");
+    const home=document.getElementById("home");
+    const open=tools.style.display==="block";
+    tools.style.display=open?"none":"block";
+    home.style.display=open?"flex":"none";
+}
+function showAbout(){
+    alert("This site hosts free FNAF games, tools, and mini-games.");
+}
 
-let memory={topic:null};
+/* CALCULATOR */
+function addCalc(v){ calcDisplay.value+=v; }
+function calculate(){ try{ calcDisplay.value=eval(calcDisplay.value); }catch{ alert("Error"); } }
+function clearCalc(){ calcDisplay.value=""; }
 
-input.addEventListener("keydown",e=>{if(e.key==="Enter")sendMessage()});
-
-function openLink(u){window.open(u,"_blank")}
-function showHome(){home.style.display="flex";tools.style.display="none"}
-function toggleTools(){tools.style.display=tools.style.display==="block"?"none":"block";home.style.display=tools.style.display==="block"?"none":"flex"}
-function showAbout(){alert("Free games and tools site.\nMade by Gabriel, Noah, and Nicholas.")}
-
-function add(v){calcDisplay.value+=v}
-function calculate(){try{calcDisplay.value=eval(calcDisplay.value)}catch{alert("Invalid")}}
-function clearCalc(){calcDisplay.value=""}
-
-/* SMART CHATBOT */
+/* CHATBOT (FIXED & SMARTER) */
 function sendMessage(){
-    const msg=input.value.trim();
-    if(!msg)return;
-    addMsg("You",msg);
+    const input=document.getElementById("userInput");
+    const messages=document.getElementById("chat-messages");
+    const text=input.value.trim();
+    if(!text) return;
+
+    messages.innerHTML+=`<div><b>You:</b> ${text}</div>`;
+
+    let reply="I'm here to help!";
+    const msg=text.toLowerCase();
+    if(msg.includes("fnaf")) reply="FNAF games are on the Home page.";
+    else if(msg.includes("tool")) reply="Check the Tools section for calculator and games.";
+    else if(msg.includes("tic")) reply="Tic Tac Toe is under Tools!";
+    else if(msg.includes("hello")||msg.includes("hi")) reply="Hey there! 👋";
+
+    messages.innerHTML+=`<div><b>Bot:</b> ${reply}</div>`;
     input.value="";
-    setTimeout(()=>addMsg("Bot",reply(msg.toLowerCase())),350);
+    messages.scrollTop=messages.scrollHeight;
 }
 
-function reply(m){
-    if(/hi|hello|hey/.test(m)) return "Hey! 👋 Want games or tools?";
-    if(m.includes("fnaf")) return "FNAF 1–4 are available. Start with the first!";
-    if(m.includes("game")) return "You can play FNAF or fly planes in Geo-FS ✈️";
-    if(m.includes("calculator")) return "The calculator is under Tools 🧮";
-    if(m.includes("tools")) return "Tools include calculator and feedback.";
-    if(m.includes("who made")) return "Made by Gabriel, Noah, and Nicholas.";
-    return "Ask me about games, tools, or the site 🙂";
+document.getElementById("userInput").addEventListener("keydown",e=>{
+    if(e.key==="Enter"){ e.preventDefault(); sendMessage(); }
+});
+
+/* TIC TAC TOE */
+let board=["","","","","","","","",""], turn="X", mode="pvp";
+const wins=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+
+function setMode(m){ mode=m; resetTTT(); }
+function resetTTT(){ board.fill(""); turn="X"; draw(); tttStatus.textContent=""; }
+
+function draw(){
+    const b=document.getElementById("board");
+    b.innerHTML="";
+    board.forEach((v,i)=>{
+        const d=document.createElement("div");
+        d.className="cell";
+        d.textContent=v;
+        d.onclick=()=>move(i);
+        b.appendChild(d);
+    });
 }
 
-function addMsg(w,t){
-    chat.innerHTML+=`<div><b>${w}:</b> ${t}</div>`;
-    chat.scrollTop=chat.scrollHeight;
+function move(i){
+    if(board[i]) return;
+    board[i]=turn;
+    if(wins.some(w=>w.every(j=>board[j]===turn))){
+        document.getElementById("tttStatus").textContent=turn+" wins!";
+        return;
+    }
+    if(!board.includes("")){
+        document.getElementById("tttStatus").textContent="Draw!";
+        return;
+    }
+    turn=turn==="X"?"O":"X";
+    draw();
+    if(mode==="ai" && turn==="O") aiMove();
 }
 
-/* VIEW COUNTER */
-let v=localStorage.getItem("views")||0;
-localStorage.setItem("views",++v);
-document.getElementById("view-counter").innerText="👀 Views: "+v;
-
-/* THEME TOGGLE */
-function toggleTheme(){
-    document.body.classList.toggle("light");
+function aiMove(){
+    const empty=board.map((v,i)=>v===""?i:null).filter(v=>v!==null);
+    const choice=empty[Math.floor(Math.random()*empty.length)];
+    board[choice]="O";
+    turn="X";
+    draw();
 }
+
+draw();
 </script>
 
 </body>
 </html>
+
