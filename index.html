@@ -76,7 +76,7 @@ footer {
     font-size: 0.9em;
 }
 
-/* CHATBOT STYLES */
+/* CHATBOT */
 #chatbot {
     position: fixed;
     bottom: 20px;
@@ -125,8 +125,8 @@ footer {
 <body>
 
 <nav>
-    <button>🏠 Home</button>
-    <button>ℹ️ About</button>
+    <button onclick="scrollToTop()">🏠 Home</button>
+    <button onclick="showAbout()">ℹ️ About</button>
 </nav>
 
 <main>
@@ -163,6 +163,22 @@ function openLink(url) {
     window.open(url, "_blank");
 }
 
+function scrollToTop() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+/* ABOUT BUTTON */
+function showAbout() {
+    alert(
+        "🎮 About This Website\n\n" +
+        "This website lets you play free games like FNAF 1–4 and Geo-FS.\n\n" +
+        "Built using HTML, CSS, and JavaScript.\n\n" +
+        "Made by:\n" +
+        "Gabriel Plaxine\nNoah Ficentise\nNicholas Castillo"
+    );
+}
+
+/* CHATBOT */
 function sendMessage() {
     const input = document.getElementById("userInput");
     const msg = input.value.trim();
@@ -193,7 +209,7 @@ function getBotResponse(message) {
         return "Geo-FS is a free flight simulator ✈️";
     if (message.includes("who made"))
         return "This site was made by Gabriel, Noah, and Nicholas!";
-    
+
     return "I'm here to help! Try asking about the games.";
 }
 
